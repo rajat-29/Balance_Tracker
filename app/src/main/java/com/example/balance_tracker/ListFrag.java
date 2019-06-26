@@ -47,7 +47,7 @@ public class ListFrag extends Fragment {
 
         QuizDbHelper db= new QuizDbHelper(this.getActivity());
 
-        myAdapter = new PersonAdapter(this.getActivity(),db.getArray() );
+        myAdapter = new PersonAdapter(this.getActivity(),db.getArray());
         recyclerView.setAdapter(myAdapter);
 
     }

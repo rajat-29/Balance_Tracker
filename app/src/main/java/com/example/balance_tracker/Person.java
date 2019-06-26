@@ -5,6 +5,8 @@ public class Person {
     private String name;
     private String balance;
 
+    public Person() {}
+
     public Person(String name, String balance) {
         this.name = name;
         this.balance = balance;

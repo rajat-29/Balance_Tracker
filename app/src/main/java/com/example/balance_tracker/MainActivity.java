@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PersonAdapter.ItemClicked {
 
     TextView tvName,tvBalance;
     EditText etAmount;
@@ -29,5 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onitemClicked(int index) {
+
+//        QuizDbHelper db=new QuizDbHelper(this);
+//        //db.open();
+//        Person name=db.getIndexData(index);
+//       // db.close();
+//        tvName.setText(name.getName());
+//        tvBalance.setText(name.getBalance());
     }
 }
