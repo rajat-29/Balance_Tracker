@@ -10,8 +10,7 @@ import com.example.balance_tracker.BalanceContract.*;
 
 import java.util.ArrayList;
 
-public class QuizDbHelper extends SQLiteOpenHelper
-{
+public class QuizDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "BalanceTracker.db";
     public static int DATABASE_VERSION = 1;
@@ -19,8 +18,7 @@ public class QuizDbHelper extends SQLiteOpenHelper
     private SQLiteDatabase db;
 
 
-    public  QuizDbHelper (Context context)
-    {
+    public QuizDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -49,16 +47,14 @@ public class QuizDbHelper extends SQLiteOpenHelper
 
     }
 
-    private void fillQuestionsTable()
-    {
+    private void fillQuestionsTable() {
 
-        Person p1 = new Person("Rajat","100");
+        Person p1 = new Person("Rajat", "100");
         addPerson(p1);
 
     }
 
-    private void addPerson(Person person)
-    {
+    private void addPerson(Person person) {
 
         ContentValues cv = new ContentValues();
         cv.put(QuestionsTable.COLUMN_NAME, person.getName());
@@ -70,16 +66,14 @@ public class QuizDbHelper extends SQLiteOpenHelper
     }
 
 
-    public ArrayList<Person> getArray()
-    {
+    public ArrayList<Person> getArray() {
         ArrayList<Person> result = new ArrayList<>();
 
         db = getReadableDatabase();
 
-        Cursor c = db.rawQuery("SELECT * FROM "+ QuestionsTable.TABLE_NAME, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
 
-        if(c.moveToFirst())
-        {
+        if (c.moveToFirst()) {
             do {
                 Person person = new Person();
                 person.setName(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_NAME)));
@@ -93,11 +87,45 @@ public class QuizDbHelper extends SQLiteOpenHelper
         return result;
     }
 
+    // method to find details of name clicked
+    public Person getIndexData(int i) {
+        System.out.println(i);
 
-//    public Person getIndexData(int i)
-//    {
-//
-//    }
+        db = getReadableDatabase();
+
+        Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+        {
+            if (i == Integer.parseInt(c.getString(c.getColumnIndex(QuestionsTable._ID)))) {
+                Person p = new Person(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_NAME)), c.getString(c.getColumnIndex(QuestionsTable.COLUMN_BALANCE)));
+                return p;
+            }
+        }
+
+        c.close();
+        Person p = new Person("Error", "404");
+        return p;
+    }
+
+    //method to find index
+    public int findindex(String name)
+    {
+        db = getReadableDatabase();
+
+        Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+        {
+            if (name.equals(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_NAME))))
+            {
+                return Integer.parseInt(c.getString(c.getColumnIndex(QuestionsTable._ID)));
+            }
+        }
+        c.close();
+
+        return -1;
+    }
 
 
 }

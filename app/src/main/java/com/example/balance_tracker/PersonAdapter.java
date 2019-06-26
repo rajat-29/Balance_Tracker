@@ -44,7 +44,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    activity.onitemClicked(people.indexOf((Person) v.getTag()));
+
+                    String name=tvName.getText().toString();
+
+                    QuizDbHelper db=new QuizDbHelper((Context) activity);
+
+                    activity.onitemClicked(db.findindex(name));
 
                 }
             });

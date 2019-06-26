@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
 
     @Override
     public void onitemClicked(int index) {
+        System.out.println("click hua");
 
-//        QuizDbHelper db=new QuizDbHelper(this);
-//        //db.open();
-//        Person name=db.getIndexData(index);
-//       // db.close();
-//        tvName.setText(name.getName());
-//        tvBalance.setText(name.getBalance());
+        QuizDbHelper db=new QuizDbHelper(this);
+        Person name = db.getIndexData(index);
+
+        tvName.setText(name.getName());
+        tvBalance.setText(name.getBalance());
     }
 }
