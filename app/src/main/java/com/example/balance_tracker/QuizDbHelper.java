@@ -128,5 +128,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return -1;
     }
 
+    public long deleteEntry(String rowId) {
+        return db.delete(QuestionsTable.TABLE_NAME,QuestionsTable._ID+ "=?",new String[]{rowId});
+    }
+
 
 }
