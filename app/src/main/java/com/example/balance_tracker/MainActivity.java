@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity implements PersonAdapter.ItemClicked {
 
@@ -15,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
     EditText etAmount;
     Button btnAdd;
     FloatingActionButton fab;
+    FragmentManager fragmentManager;
+    ListFrag listFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,12 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         etAmount = findViewById(R.id.etAmount);
         btnAdd = findViewById(R.id.btnAdd);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        fragmentManager = this.getSupportFragmentManager();
+
+
+        listFrag = (ListFrag) fragmentManager.findFragmentById(R.id.listFrag);
+
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -74,9 +84,26 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
                 alertDialog.dismiss();
             }
         });
-        alertDialog.show();
 
+        btnok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = textadd.getText().toString().trim();
+                System.out.println(name);
+                QuizDbHelper db = new QuizDbHelper(getApplicationContext());
+                db.fillQuestionsTable(name, "0");
+                notifyDataChange();
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 
+
+    public void notifyDataChange()
+    {
+        listFrag.notifyDataChanged();
+    }
 
 }

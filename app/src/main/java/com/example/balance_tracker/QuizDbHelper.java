@@ -36,7 +36,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
 
-        fillQuestionsTable();
     }
 
     @Override
@@ -47,9 +46,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     }
 
-    private void fillQuestionsTable() {
+    public void fillQuestionsTable(String n, String bal)
+    {
+        db = getWritableDatabase();
 
-        Person p1 = new Person("Rajat", "100");
+        Person p1 = new Person(n, bal);
         addPerson(p1);
 
     }

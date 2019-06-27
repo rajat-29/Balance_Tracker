@@ -51,4 +51,11 @@ public class ListFrag extends Fragment {
         recyclerView.setAdapter(myAdapter);
 
     }
+
+    public void notifyDataChanged() {
+        QuizDbHelper db= new QuizDbHelper(this.getActivity());
+
+        myAdapter = new PersonAdapter(this.getActivity(),db.getArray());
+        recyclerView.setAdapter(myAdapter);
+    }
 }
