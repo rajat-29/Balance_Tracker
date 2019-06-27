@@ -1,5 +1,7 @@
 package com.example.balance_tracker;
 
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
     TextView tvName,tvBalance;
     EditText etAmount;
     Button btnAdd;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +25,20 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         tvBalance = findViewById(R.id.tvBalance);
         etAmount = findViewById(R.id.etAmount);
         btnAdd = findViewById(R.id.btnAdd);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewPersonDialog(v);
             }
         });
     }
@@ -41,4 +53,30 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         tvName.setText(name.getName());
         tvBalance.setText(name.getBalance());
     }
+
+    private void addNewPersonDialog(View v)
+    {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        View rView = getLayoutInflater().inflate(R.layout.addpersondialogbox,null);
+
+        final EditText textadd = (EditText)rView.findViewById(R.id.addPerson);
+        Button btnok = (Button)rView.findViewById(R.id.AddPersonDone);
+        Button btncancel = (Button)rView.findViewById(R.id.cancelPerson);
+
+        alert.setView(rView);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+
+        btncancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
+
+    }
+
+
 }

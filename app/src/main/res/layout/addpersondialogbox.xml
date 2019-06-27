@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorAccent"
+    android:padding="18dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:textSize="30sp"
+        android:padding="12dp"
+        android:text="Add Person"/>
+    
+    <EditText
+        android:id="@+id/addPerson"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="22sp"
+        android:padding="10dp"
+        android:inputType="textNoSuggestions|textCapWords"
+        android:hint="Name of Person" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <Button
+            android:id="@+id/AddPersonDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="7dp"
+            android:background="@color/colorPrimary"
+            android:text="Add"
+            android:layout_margin="6dp"
+            android:textStyle="bold"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/cancelPerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="7dp"
+            android:background="@color/colorPrimary"
+            android:text="Cancel"
+            android:layout_margin="6dp"
+            android:textStyle="bold"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+    
+
+</LinearLayout>

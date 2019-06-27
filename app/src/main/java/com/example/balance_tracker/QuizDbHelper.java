@@ -104,7 +104,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         }
 
         c.close();
-        Person p = new Person("Error", "404");
+        Person p = new Person("Error", "0");
         return p;
     }
 
