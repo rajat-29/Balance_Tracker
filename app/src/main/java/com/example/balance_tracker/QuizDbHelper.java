@@ -132,5 +132,16 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return db.delete(QuestionsTable.TABLE_NAME,QuestionsTable._ID+ "=?",new String[]{rowId});
     }
 
+    public long updateEntry(String rId, String name, String bal)
+    {
+        ContentValues cv = new ContentValues();
+
+        cv.put(QuestionsTable._ID, rId);
+        cv.put(QuestionsTable.COLUMN_NAME, name);
+        cv.put(QuestionsTable.COLUMN_BALANCE, bal);
+
+        return db.update(QuestionsTable.TABLE_NAME,cv,QuestionsTable._ID + "=" +    QuestionsTable._ID,null);
+    }
+
 
 }

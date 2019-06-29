@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements PersonAdapter.ItemClicked {
 
@@ -41,6 +42,26 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String data;
+
+                if(etAmount.getText().toString().isEmpty())
+                {
+
+                    Toast.makeText(getApplicationContext(), "Please Enter Amount", Toast.LENGTH_SHORT).show();
+
+                }
+                else  {
+                    data = etAmount.getText().toString().trim();
+                    QuizDbHelper db = new QuizDbHelper(MainActivity.this);
+                    db.updateEntry(Integer.toString(db.findindex(tvName.getText().toString().trim())),tvName.getText().toString().trim(),data);
+                    tvBalance.setText(data);
+                    etAmount.setText(null);
+                    Toast.makeText(getApplicationContext(), "Data Updated", Toast.LENGTH_SHORT).show();
+                    listFrag.notifyDataChanged();
+
+
+                }
 
             }
         });
