@@ -1,10 +1,12 @@
 package com.example.balance_tracker;
 
+import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,9 +59,9 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
                     db.updateEntry(Integer.toString(db.findindex(tvName.getText().toString().trim())),tvName.getText().toString().trim(),data);
                     tvBalance.setText(data);
                     etAmount.setText(null);
-                    Toast.makeText(getApplicationContext(), "Data Updated", Toast.LENGTH_SHORT).show();
+                    closeKeyboard();
                     listFrag.notifyDataChanged();
-
+                    Toast.makeText(getApplicationContext(), "Data Updated", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -125,6 +127,16 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
     public void notifyDataChange()
     {
         listFrag.notifyDataChanged();
+    }
+
+    public void closeKeyboard()
+    {
+        View view=this.getCurrentFocus();
+        if(view!=null)
+        {
+            InputMethodManager imm=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
     }
 
 }

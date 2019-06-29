@@ -140,7 +140,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_NAME, name);
         cv.put(QuestionsTable.COLUMN_BALANCE, bal);
 
-        return db.update(QuestionsTable.TABLE_NAME,cv,QuestionsTable._ID + "=" +    QuestionsTable._ID,null);
+        return db.update(QuestionsTable.TABLE_NAME,cv,QuestionsTable._ID + "=" + rId,null);
     }
 
 
