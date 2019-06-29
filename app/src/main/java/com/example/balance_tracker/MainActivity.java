@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
     EditText etAmount;
     Button btnAdd;
     FloatingActionButton fab;
-    FragmentManager fragmentManager;
+    FragmentManager fragmentManager,fragmentManagerR;
+    Fragment list,update,detail;
     ListFrag listFrag;
 
     @Override
@@ -35,9 +36,20 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
         fragmentManager = this.getSupportFragmentManager();
+        fragmentManagerR = this.getSupportFragmentManager();
 
 
         listFrag = (ListFrag) fragmentManager.findFragmentById(R.id.listFrag);
+
+        list = fragmentManagerR.findFragmentById(R.id.listFrag);
+        update = fragmentManagerR.findFragmentById(R.id.updateFrag);
+        detail = fragmentManagerR.findFragmentById(R.id.detailFrag);
+
+        fragmentManagerR.beginTransaction()
+                .show(list)
+                .hide(update)
+                .hide(detail)
+                .commit();
 
 
 
@@ -85,6 +97,12 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
 
         tvName.setText(name.getName());
         tvBalance.setText(name.getBalance());
+
+        fragmentManagerR.beginTransaction()
+                .show(list)
+                .show(update)
+                .show(detail)
+                .commit();
     }
 
     private void addNewPersonDialog(View v)
@@ -127,6 +145,11 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
     public void notifyDataChange()
     {
         listFrag.notifyDataChanged();
+        fragmentManagerR.beginTransaction()
+                .show(list)
+                .hide(update)
+                .hide(detail)
+                .commit();
     }
 
     public void closeKeyboard()
