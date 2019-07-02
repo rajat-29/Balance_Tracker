@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
             }
         });
 
+        // add new person
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         });
     }
 
+    // on specific item clicked
     @Override
     public void onitemClicked(int index) {
         System.out.println("click hua");
@@ -106,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
                 .commit();
     }
 
+    //dialog box for new person
     private void addNewPersonDialog(View v)
     {
         final AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -142,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         alertDialog.show();
     }
 
-
+    // detect changes in list
     public void notifyDataChange()
     {
         listFrag.notifyDataChanged();
@@ -153,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
                 .commit();
     }
 
+    //close keyboard
     public void closeKeyboard()
     {
         View view=this.getCurrentFocus();
@@ -163,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         }
     }
 
+    //method for back button
     @Override
     public void onBackPressed()
     {

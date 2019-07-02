@@ -10,10 +10,13 @@ import com.example.balance_tracker.BalanceContract.*;
 
 import java.util.ArrayList;
 
+
 public class QuizDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "BalanceTracker.db";
     public static int DATABASE_VERSION = 1;
+
+    /* Made by Rajat Gupta */
 
     private SQLiteDatabase db;
 
@@ -22,6 +25,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // create table
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -46,6 +50,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     }
 
+    // fill data in person class
     public void fillQuestionsTable(String n, String bal)
     {
         db = getWritableDatabase();
@@ -55,6 +60,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     }
 
+    // add to database
     private void addPerson(Person person) {
 
         ContentValues cv = new ContentValues();
@@ -66,7 +72,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     }
 
-
+    // retrieve data from table
     public ArrayList<Person> getArray() {
         ArrayList<Person> result = new ArrayList<>();
 
@@ -128,10 +134,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return -1;
     }
 
+    // delete entry
     public long deleteEntry(String rowId) {
         return db.delete(QuestionsTable.TABLE_NAME,QuestionsTable._ID+ "=?",new String[]{rowId});
     }
 
+    // update entry
     public long updateEntry(String rId, String name, String bal)
     {
         ContentValues cv = new ContentValues();

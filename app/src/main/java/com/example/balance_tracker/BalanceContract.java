@@ -2,6 +2,9 @@ package com.example.balance_tracker;
 
 import android.provider.BaseColumns;
 
+/* Made By Rajat Gupta */
+
+// specify table column names
 public final class BalanceContract
 {
     private BalanceContract() {}

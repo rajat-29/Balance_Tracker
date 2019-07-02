@@ -33,6 +33,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
         activity = (ItemClicked) context;
     }
 
+    //method where actions are performed on list fragments like onclick change in detail frag and delete button
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView tvName;
@@ -92,6 +93,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
         }
     }
 
+    // Method to  create our view holder
     @NonNull
     @Override
     public PersonAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -100,6 +102,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+    // Method to create view holder data
     @Override
     public void onBindViewHolder(@NonNull PersonAdapter.ViewHolder viewHolder, int i) {
 
@@ -109,6 +112,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
 
     }
 
+    //Method to get size of person in an array
     @Override
     public int getItemCount() {
         return people.size();
