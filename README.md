@@ -1,13 +1,13 @@
 # Balance_Tracker
 Balance Tracker in Android
 
-##Features
+## Features
 <ul>
 <li>Track Person's Balance</li>
 <li>Sqlite Database</li>
 </ul>
 
-##Preview
+## Preview
 
 <img src="https://user-images.githubusercontent.com/38129975/60503507-85eb3300-9cdd-11e9-9896-918d73193857.jpeg" width="280px" height="500px"><img src="https://user-images.githubusercontent.com/38129975/60503555-98fe0300-9cdd-11e9-9a8b-dba03c50e1ca.jpeg" width="280px" height="500px" align="right">
 
