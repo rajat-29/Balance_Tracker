@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setTitle("Balance Tracker");
+
         tvName = findViewById(R.id.tvName);
         tvBalance = findViewById(R.id.tvBalance);
         etAmount = findViewById(R.id.etAmount);
@@ -135,10 +137,17 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
             public void onClick(View v) {
                 String name = textadd.getText().toString().trim();
                 System.out.println(name);
-                QuizDbHelper db = new QuizDbHelper(getApplicationContext());
-                db.fillQuestionsTable(name, "0");
-                notifyDataChange();
+                if(name.toString().isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(),"Please Enter Name", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    QuizDbHelper db = new QuizDbHelper(getApplicationContext());
+                    db.fillQuestionsTable(name, "0");
+                    notifyDataChange();
+                }
                 alertDialog.dismiss();
+
             }
         });
 
